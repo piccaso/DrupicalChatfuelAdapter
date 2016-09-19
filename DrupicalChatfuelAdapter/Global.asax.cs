@@ -14,5 +14,14 @@ namespace DrupicalChatfuelAdapter
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
+
+        void Application_Error(object sender, EventArgs e)
+        {
+            Exception exception = Server.GetLastError();
+            if (exception != null)
+            {
+                Console.WriteLine(exception.ToString());
+            }
+        }
     }
 }

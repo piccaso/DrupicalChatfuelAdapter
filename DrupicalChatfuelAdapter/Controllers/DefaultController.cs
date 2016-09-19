@@ -18,7 +18,7 @@ namespace DrupicalChatfuelAdapter.Controllers
         private ICacheService _cache = new InMemoryCache();
 
         // GET: Default
-        public ActionResult Index(int? limit= 10, IEnumerable<string> type = null, IEnumerable<string> city = null, IEnumerable<string> country = null)
+        public ActionResult Index(int? limit= 10, IEnumerable<string> type = null, IEnumerable<string> city = null, IEnumerable<string> country = null, string format = null)
         {
             var url = "https://www.drupical.com/app";
             var defaultLogo = "https://www.dropbox.com/s/l75ltlq9vy8i7iq/drupical-cover.png?dl=1";
@@ -80,9 +80,23 @@ namespace DrupicalChatfuelAdapter.Controllers
                 };
                 chatfuel.Add(entry);
             }
+
+            string returnContent = null;
+            if (format == null || format == "chatfuel")
+            {
+                returnContent = JsonConvert.SerializeObject(chatfuel, Formatting.Indented);
+            }
+            else if(format == "drupical")
+            {
+                returnContent = JsonConvert.SerializeObject(drupical, Formatting.Indented);
+            }
+            else
+            {
+                throw new InvalidOperationException($"Unknown format:'{format}'");
+            }
             
 
-            return Content(JsonConvert.SerializeObject(chatfuel, Formatting.Indented), "application/javascript", Encoding.UTF8);
+            return Content(returnContent, "application/javascript", Encoding.UTF8);
         }
 
         public static DateTime _UnixTimeStampToDateTime(long unixTimeStamp)
