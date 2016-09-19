@@ -6,10 +6,8 @@ RUN \
 	rm -rf /var/lib/apt/lists/* && \
 	mkdir -p /var/www
 
-ADD . /usr/src/DrupicalChatfuelAdapter
+ADD ./DrupicalChatfuelAdapter/pub /var/www/_PublishedWebsites/DrupicalChatfuelAdapter
 WORKDIR /usr/src/DrupicalChatfuelAdapter
-RUN nuget restore -NonInteractive
-RUN xbuild /property:Configuration=Release /property:OutDir=/var/www/
 	
 WORKDIR /var/www/_PublishedWebsites/DrupicalChatfuelAdapter
 EXPOSE 80
