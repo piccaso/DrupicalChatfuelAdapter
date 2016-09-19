@@ -9,7 +9,7 @@ namespace DrupicalChatfuelAdapter.Models
     {
         public string nid { get; set; }
         public string title { get; set; }
-        public string from { get; set; }
+        public long from { get; set; }
         //public Date date { get; set; }
         public Geo geo { get; set; }
         public object[] map { get; set; }
@@ -18,7 +18,7 @@ namespace DrupicalChatfuelAdapter.Models
         public string city { get; set; }
         public string state { get; set; }
         public string gid { get; set; }
-        public string to { get; set; }
+        public long to { get; set; }
         public string source { get; set; }
         public string link { get; set; }
         public string logo { get; set; }
