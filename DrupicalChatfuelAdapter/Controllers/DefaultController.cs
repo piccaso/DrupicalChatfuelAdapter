@@ -59,7 +59,7 @@ namespace DrupicalChatfuelAdapter.Controllers
                 if(!string.IsNullOrWhiteSpace(d.country)) subtitle.Add(d.country);
                 if(!string.IsNullOrWhiteSpace(d.city)) subtitle.Add(d.city);
                 var from = _UnixTimeStampToDateTime(d.from);
-                subtitle.Add(from.ToString("D"));
+                subtitle.Add(from.ToString("dd. MMMM yyyy"));
                 if (string.IsNullOrWhiteSpace(d.logo)) d.logo = defaultLogo;
                 chatfuelElements.Add(new Element
                 {
@@ -90,6 +90,7 @@ namespace DrupicalChatfuelAdapter.Controllers
                     }
                 }
             });
+            
 
             string returnContent;
             if (format == null || format == "chatfuel")
@@ -104,7 +105,8 @@ namespace DrupicalChatfuelAdapter.Controllers
             {
                 throw new InvalidOperationException($"Unknown format:'{format}'");
             }
-            
+
+            //returnContent = JsonConvert.SerializeObject(drupical.Select(d => d.country).Distinct().ToArray(), Formatting.Indented);
 
             return Content(returnContent, "application/javascript", Encoding.UTF8);
         }
