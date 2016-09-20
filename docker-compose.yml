@@ -1,0 +1,11 @@
+# Web node
+web:
+  hostname: drupibot 
+  image: 0xff/dca.net:latest
+  restart: always
+  ports:
+    - "80"
+    - "443"
+  environment:
+    - VIRTUAL_HOST=drupibot.acolono.com
+
