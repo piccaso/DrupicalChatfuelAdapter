@@ -1,7 +1,7 @@
 # Web node
 web:
   hostname: drupibot 
-  image: 0xff/dca.net:latest
+  image: 0xff/dca.net-mono:latest
   restart: always
   ports:
     - "80"
